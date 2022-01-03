@@ -20,6 +20,7 @@ Just a simple cli for Windows. It splits any file by start and end pattern.
 ## Usage
 
 From Powershell or CMD
+
 General example:
 >split_log.exe filepath start end
 

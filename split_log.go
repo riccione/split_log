@@ -17,10 +17,13 @@ func main() {
 	args := os.Args
 	filePath := args[1]
 	start := args[2]
-	end := args[3]
-	fmt.Println(filePath)
-	fmt.Println(start)
-	fmt.Println(end)
+	end := "END"
+	if len(args) > 3 {
+		end = args[3]
+	}
+	//fmt.Println(filePath)
+	//fmt.Println(start)
+	//fmt.Println(end)
 
 	f, err := os.Open(filePath)
 	check(err)
@@ -34,9 +37,9 @@ func main() {
 		l := fs.Text()
 		if strings.HasPrefix(l, start) {
 			isExist = true
-			if strings.HasPrefix(l, end) {
-				break
-			}
+		}
+		if strings.HasPrefix(l, end) {
+			break
 		}
 		if isExist {
 			fmt.Println(l)
