@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"os"
 	"strings"
@@ -14,18 +15,19 @@ func check(e error) {
 }
 
 func main() {
-	args := os.Args
-	filePath := args[1]
-	start := args[2]
-	end := "END"
-	if len(args) > 3 {
-		end = args[3]
-	}
-	//fmt.Println(filePath)
-	//fmt.Println(start)
-	//fmt.Println(end)
+	var path, start, end string
+	flag.StringVar(&path, "p", "", "file path")
+	flag.StringVar(&start, "s", "", "start value")
+	flag.StringVar(&end, "e", "END", "end value")
+	flag.Parse()
 
-	f, err := os.Open(filePath)
+	if len(path) == 0 {
+		fmt.Println("Usage: -path=\"file_path\"")
+		flag.PrintDefaults()
+		os.Exit(1)
+	}
+
+	f, err := os.Open(path)
 	check(err)
 
 	fs := bufio.NewScanner(f)
@@ -45,6 +47,5 @@ func main() {
 			fmt.Println(l)
 		}
 	}
-
 	f.Close()
 }
