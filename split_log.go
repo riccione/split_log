@@ -22,7 +22,7 @@ func main() {
 	flag.Parse()
 
 	if len(path) == 0 {
-		fmt.Println("Usage: -path=\"file_path\"")
+		fmt.Println("Usage: -p=\"file_path\"")
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
@@ -48,4 +48,5 @@ func main() {
 		}
 	}
 	f.Close()
+	os.Exit(0)
 }
